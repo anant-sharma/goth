@@ -3,7 +3,7 @@ package apple
 import (
 	"testing"
 
-	"github.com/markbates/goth"
+	"github.com/anant-sharma/goth"
 	"github.com/stretchr/testify/assert"
 )
 

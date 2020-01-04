@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/markbates/goth/providers/apple"
+	"github.com/anant-sharma/goth/providers/apple"
 	"html/template"
 	"net/http"
 	"os"
@@ -11,59 +11,59 @@ import (
 
 	"log"
 
+	"github.com/anant-sharma/goth"
+	"github.com/anant-sharma/goth/gothic"
+	"github.com/anant-sharma/goth/providers/amazon"
+	"github.com/anant-sharma/goth/providers/auth0"
+	"github.com/anant-sharma/goth/providers/azuread"
+	"github.com/anant-sharma/goth/providers/battlenet"
+	"github.com/anant-sharma/goth/providers/bitbucket"
+	"github.com/anant-sharma/goth/providers/box"
+	"github.com/anant-sharma/goth/providers/dailymotion"
+	"github.com/anant-sharma/goth/providers/deezer"
+	"github.com/anant-sharma/goth/providers/digitalocean"
+	"github.com/anant-sharma/goth/providers/discord"
+	"github.com/anant-sharma/goth/providers/dropbox"
+	"github.com/anant-sharma/goth/providers/eveonline"
+	"github.com/anant-sharma/goth/providers/facebook"
+	"github.com/anant-sharma/goth/providers/fitbit"
+	"github.com/anant-sharma/goth/providers/gitea"
+	"github.com/anant-sharma/goth/providers/github"
+	"github.com/anant-sharma/goth/providers/gitlab"
+	"github.com/anant-sharma/goth/providers/google"
+	"github.com/anant-sharma/goth/providers/gplus"
+	"github.com/anant-sharma/goth/providers/heroku"
+	"github.com/anant-sharma/goth/providers/instagram"
+	"github.com/anant-sharma/goth/providers/intercom"
+	"github.com/anant-sharma/goth/providers/lastfm"
+	"github.com/anant-sharma/goth/providers/line"
+	"github.com/anant-sharma/goth/providers/linkedin"
+	"github.com/anant-sharma/goth/providers/meetup"
+	"github.com/anant-sharma/goth/providers/microsoftonline"
+	"github.com/anant-sharma/goth/providers/naver"
+	"github.com/anant-sharma/goth/providers/nextcloud"
+	"github.com/anant-sharma/goth/providers/onedrive"
+	"github.com/anant-sharma/goth/providers/openidConnect"
+	"github.com/anant-sharma/goth/providers/paypal"
+	"github.com/anant-sharma/goth/providers/salesforce"
+	"github.com/anant-sharma/goth/providers/seatalk"
+	"github.com/anant-sharma/goth/providers/shopify"
+	"github.com/anant-sharma/goth/providers/slack"
+	"github.com/anant-sharma/goth/providers/soundcloud"
+	"github.com/anant-sharma/goth/providers/spotify"
+	"github.com/anant-sharma/goth/providers/steam"
+	"github.com/anant-sharma/goth/providers/stripe"
+	"github.com/anant-sharma/goth/providers/twitch"
+	"github.com/anant-sharma/goth/providers/twitter"
+	"github.com/anant-sharma/goth/providers/typetalk"
+	"github.com/anant-sharma/goth/providers/uber"
+	"github.com/anant-sharma/goth/providers/vk"
+	"github.com/anant-sharma/goth/providers/wepay"
+	"github.com/anant-sharma/goth/providers/xero"
+	"github.com/anant-sharma/goth/providers/yahoo"
+	"github.com/anant-sharma/goth/providers/yammer"
+	"github.com/anant-sharma/goth/providers/yandex"
 	"github.com/gorilla/pat"
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/gothic"
-	"github.com/markbates/goth/providers/amazon"
-	"github.com/markbates/goth/providers/auth0"
-	"github.com/markbates/goth/providers/azuread"
-	"github.com/markbates/goth/providers/battlenet"
-	"github.com/markbates/goth/providers/bitbucket"
-	"github.com/markbates/goth/providers/box"
-	"github.com/markbates/goth/providers/dailymotion"
-	"github.com/markbates/goth/providers/deezer"
-	"github.com/markbates/goth/providers/digitalocean"
-	"github.com/markbates/goth/providers/discord"
-	"github.com/markbates/goth/providers/dropbox"
-	"github.com/markbates/goth/providers/eveonline"
-	"github.com/markbates/goth/providers/facebook"
-	"github.com/markbates/goth/providers/fitbit"
-	"github.com/markbates/goth/providers/gitea"
-	"github.com/markbates/goth/providers/github"
-	"github.com/markbates/goth/providers/gitlab"
-	"github.com/markbates/goth/providers/google"
-	"github.com/markbates/goth/providers/gplus"
-	"github.com/markbates/goth/providers/heroku"
-	"github.com/markbates/goth/providers/instagram"
-	"github.com/markbates/goth/providers/intercom"
-	"github.com/markbates/goth/providers/lastfm"
-	"github.com/markbates/goth/providers/line"
-	"github.com/markbates/goth/providers/linkedin"
-	"github.com/markbates/goth/providers/meetup"
-	"github.com/markbates/goth/providers/microsoftonline"
-	"github.com/markbates/goth/providers/naver"
-	"github.com/markbates/goth/providers/nextcloud"
-	"github.com/markbates/goth/providers/onedrive"
-	"github.com/markbates/goth/providers/openidConnect"
-	"github.com/markbates/goth/providers/paypal"
-	"github.com/markbates/goth/providers/salesforce"
-	"github.com/markbates/goth/providers/seatalk"
-	"github.com/markbates/goth/providers/shopify"
-	"github.com/markbates/goth/providers/slack"
-	"github.com/markbates/goth/providers/soundcloud"
-	"github.com/markbates/goth/providers/spotify"
-	"github.com/markbates/goth/providers/steam"
-	"github.com/markbates/goth/providers/stripe"
-	"github.com/markbates/goth/providers/twitch"
-	"github.com/markbates/goth/providers/twitter"
-	"github.com/markbates/goth/providers/typetalk"
-	"github.com/markbates/goth/providers/uber"
-	"github.com/markbates/goth/providers/vk"
-	"github.com/markbates/goth/providers/wepay"
-	"github.com/markbates/goth/providers/xero"
-	"github.com/markbates/goth/providers/yahoo"
-	"github.com/markbates/goth/providers/yammer"
-	"github.com/markbates/goth/providers/yandex"
 )
 
 func main() {
@@ -201,8 +201,9 @@ func main() {
 
 	p := pat.New()
 	p.Get("/auth/{provider}/callback", func(res http.ResponseWriter, req *http.Request) {
+		providerName := getProviderName(req)
 
-		user, err := gothic.CompleteUserAuth(res, req)
+		user, err := gothic.CompleteUserAuth(res, req, providerName)
 		if err != nil {
 			fmt.Fprintln(res, err)
 			return
@@ -218,12 +219,13 @@ func main() {
 	})
 
 	p.Get("/auth/{provider}", func(res http.ResponseWriter, req *http.Request) {
+		providerName := getProviderName(req)
 		// try to get the user without re-authenticating
-		if gothUser, err := gothic.CompleteUserAuth(res, req); err == nil {
+		if gothUser, err := gothic.CompleteUserAuth(res, req, providerName); err == nil {
 			t, _ := template.New("foo").Parse(userTemplate)
 			t.Execute(res, gothUser)
 		} else {
-			gothic.BeginAuthHandler(res, req)
+			gothic.BeginAuthHandler(res, req, providerName)
 		}
 	})
 
@@ -235,6 +237,11 @@ func main() {
 	log.Fatal(http.ListenAndServe(":3000", p))
 }
 
+func getProviderName(req *http.Request) string {
+	return req.URL.Query().Get(":provider")
+}
+
+// ProviderIndex Interface
 type ProviderIndex struct {
 	Providers    []string
 	ProvidersMap map[string]string

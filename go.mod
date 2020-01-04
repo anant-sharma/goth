@@ -1,4 +1,4 @@
-module github.com/markbates/goth
+module github.com/anant-sharma/goth
 
 require (
 	cloud.google.com/go v0.30.0 // indirect
@@ -18,3 +18,5 @@ require (
 	golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f // indirect
 	google.golang.org/appengine v1.2.0 // indirect
 )
+
+go 1.13

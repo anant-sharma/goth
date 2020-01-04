@@ -3,7 +3,7 @@ Package gothic wraps common behaviour when using Goth. This makes it quick, and 
 and running with Goth. Of course, if you want complete control over how things flow, in regards
 to the authentication process, feel free and use Goth directly.
 
-See https://github.com/markbates/goth/blob/master/examples/main.go to see this in action.
+See https://github.com/anant-sharma/goth/blob/master/examples/main.go to see this in action.
 */
 package gothic
 
@@ -24,7 +24,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"github.com/markbates/goth"
+	"github.com/anant-sharma/goth"
 )
 
 // SessionName is the key used to access the session store.
@@ -59,10 +59,10 @@ as either "provider" or ":provider".
 BeginAuthHandler will redirect the user to the appropriate authentication end-point
 for the requested provider.
 
-See https://github.com/markbates/goth/examples/main.go to see this in action.
+See https://github.com/anant-sharma/goth/examples/main.go to see this in action.
 */
-func BeginAuthHandler(res http.ResponseWriter, req *http.Request) {
-	url, err := GetAuthURL(res, req)
+func BeginAuthHandler(res http.ResponseWriter, req *http.Request, providerName string) {
+	url, err := GetAuthURL(res, req, providerName)
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintln(res, err)
@@ -112,14 +112,9 @@ as either "provider" or ":provider".
 I would recommend using the BeginAuthHandler instead of doing all of these steps
 yourself, but that's entirely up to you.
 */
-func GetAuthURL(res http.ResponseWriter, req *http.Request) (string, error) {
+func GetAuthURL(res http.ResponseWriter, req *http.Request, providerName string) (string, error) {
 	if !keySet && defaultStore == Store {
 		fmt.Println("goth/gothic: no SESSION_SECRET environment variable is set. The default cookie store is not available and any calls will fail. Ignore this warning if you are using a different store.")
-	}
-
-	providerName, err := GetProviderName(req)
-	if err != nil {
-		return "", err
 	}
 
 	provider, err := goth.GetProvider(providerName)
@@ -152,17 +147,12 @@ process and fetches all of the basic information about the user from the provide
 It expects to be able to get the name of the provider from the query parameters
 as either "provider" or ":provider".
 
-See https://github.com/markbates/goth/examples/main.go to see this in action.
+See https://github.com/anant-sharma/goth/examples/main.go to see this in action.
 */
-var CompleteUserAuth = func(res http.ResponseWriter, req *http.Request) (goth.User, error) {
+var CompleteUserAuth = func(res http.ResponseWriter, req *http.Request, providerName string) (goth.User, error) {
 	defer Logout(res, req)
 	if !keySet && defaultStore == Store {
 		fmt.Println("goth/gothic: no SESSION_SECRET environment variable is set. The default cookie store is not available and any calls will fail. Ignore this warning if you are using a different store.")
-	}
-
-	providerName, err := GetProviderName(req)
-	if err != nil {
-		return goth.User{}, err
 	}
 
 	provider, err := goth.GetProvider(providerName)

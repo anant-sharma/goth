@@ -5,9 +5,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/markbates/goth"
+	"github.com/anant-sharma/goth"
 	"github.com/stretchr/testify/assert"
-	"github.com/markbates/goth/providers/naver"
+	"github.com/anant-sharma/goth/providers/naver"
 )
 
 func Test_New(t *testing.T) {

@@ -12,7 +12,7 @@ import (
 	"strconv"
 
 	"fmt"
-	"github.com/markbates/goth"
+	"github.com/anant-sharma/goth"
 	"golang.org/x/oauth2"
 )
 

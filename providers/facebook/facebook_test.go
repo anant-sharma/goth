@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/facebook"
+	"github.com/anant-sharma/goth"
+	"github.com/anant-sharma/goth/providers/facebook"
 	"github.com/stretchr/testify/assert"
 )
 

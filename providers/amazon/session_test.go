@@ -1,8 +1,8 @@
 package amazon_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/amazon"
+	"github.com/anant-sharma/goth"
+	"github.com/anant-sharma/goth/providers/amazon"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

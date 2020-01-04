@@ -1,8 +1,8 @@
 package cloudfoundry_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/cloudfoundry"
+	"github.com/anant-sharma/goth"
+	"github.com/anant-sharma/goth/providers/cloudfoundry"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

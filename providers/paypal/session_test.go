@@ -1,8 +1,8 @@
 package paypal_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/paypal"
+	"github.com/anant-sharma/goth"
+	"github.com/anant-sharma/goth/providers/paypal"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
