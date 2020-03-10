@@ -17,14 +17,14 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 
+	"github.com/anant-sharma/goth"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"github.com/anant-sharma/goth"
 )
 
 // SessionName is the key used to access the session store.
@@ -42,7 +42,7 @@ type key int
 const ProviderParamKey key = iota
 
 func init() {
-	key := []byte(os.Getenv("SESSION_SECRET"))
+	key := []byte("SESSION_SECRET")
 	keySet = len(key) != 0
 
 	cookieStore := sessions.NewCookieStore([]byte(key))
@@ -69,6 +69,7 @@ func BeginAuthHandler(res http.ResponseWriter, req *http.Request, providerName s
 		return
 	}
 
+	log.Println("Redirecting to:", url)
 	http.Redirect(res, req, url, http.StatusTemporaryRedirect)
 }
 
